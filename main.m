@@ -40,8 +40,13 @@ while hasFrame(vid)
         for j = 1:frameZise(2) % To go through all columns
             X = frame(i,j);
             evidenceToSigma = weightswMat(i,j,:)./sigmaMat(i,j,:);
+
             [BackgroundIndices, ForgroundIndices] = ArgMinimum(evidenceToSigma, ...
                 weightswMat(i,j,:), thresh);
+            % ArgMinimum() is made to label the distributions as foregound or
+            % background. It will return two arrays, one contains the indices of the
+            % foreground and the other the indices of the background
+
             matchMat = [];
             matchMatIndex = [];
             for kd = 1:k % To go through  all distributions per pixel
