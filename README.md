@@ -1,8 +1,16 @@
 # Gaussian Mixture Models (GMM)
 
-This implementation is based on Stuffer"s and Grisomn's paper in [1]. They have introduced a new method for realtime segmentation that is robust and flexible to noise and perform better in modelling dynamic backgrounds. Common methods for real-time segmentation like "background subtraction" are vulnerable to changes in the background. For example, if there were some clouds on the sky or it is windy or raining, the standard methods have no chance to update their model or overcome this issue, thus giving wrong results. However, Stuffer’s and Grisomn’s approach is capable to cope such issues.
+This implementation is based on Stuffer's and Grisomn's paper in [1]. They have introduced a new method for realtime segmentation that is robust and flexible to noise and perform better in modelling dynamic backgrounds. Common methods for real-time segmentation like "background subtraction" are vulnerable to changes in the background. For example, if there were some clouds on the sky or it is windy or raining, the standard methods have no chance to update their model or overcome this issue, thus giving wrong results. However, Stuffer’s and Grisomn’s approach is capable to cope such issues.
 
 Simply their approach is to model the values of each pixel as a mixture of Gaussian distributions; then based on the variance and supporting statistics of the models we decide either a pixel is background or foreground. These characteristics allow the approach to have more than one possible pixel intensity that corresponds to the background. Furthermore, at each frame, Gaussians of mixtures at a pixel are either reinforced, punished or replaced, giving the background an advantage to improve and reduce error measurements. 
+
+[![Click to watch the video](https://i.imgur.com/vKb2F1B.png)](https://youtu.be/UdRa-q5qbfo)
+
+
+
+https://user-images.githubusercontent.com/35075754/156913439-dde141c5-6c9d-45fd-9b49-feac3c0bdf4a.mp4
+
+
 
 The following block diagram illustrates the followed approach:
 
@@ -10,10 +18,30 @@ The following block diagram illustrates the followed approach:
 <img src="https://user-images.githubusercontent.com/35075754/156894262-251e05ae-8b5d-4178-8c0c-f1bf19cd3900.jpg" width="400">
 </p>
 
+The process is further illustrated in the following pseudocode:
 
-
-
-
+```
+V ← video input
+while V has frames do
+|  for all pixels do
+|  |  label background model
+|  |  for all distributions in pixel do
+|  |  |  if pixel intensity match the distribution then
+|  |  |  |  label the pixel
+|  |  |  |  update distribution’s w, µ and σ
+|  |  |  else if intensity didn’t match the distribution then
+|  |  |  |  update distribution’s w
+|  |  |  end if
+|  |  end for
+|  |  if intensity didn’t match any of the distributions then
+|  |  |  replace the distribution with the least w/σ
+|  |  end if
+|  end for
+|  show the binary mask
+|  show the current background model by printing the µ of the
+|  highest w\σ for each pixel individually
+end while
+```
 
 
 
