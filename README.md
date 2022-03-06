@@ -4,12 +4,25 @@ This implementation is based on Stuffer's and Grisomn's paper in [1]. They have 
 
 Simply their approach is to model the values of each pixel as a mixture of Gaussian distributions; then based on the variance and supporting statistics of the models we decide either a pixel is background or foreground. These characteristics allow the approach to have more than one possible pixel intensity that corresponds to the background. Furthermore, at each frame, Gaussians of mixtures at a pixel are either reinforced, punished or replaced, giving the background an advantage to improve and reduce error measurements. 
 
-[![Click to watch the video](https://i.imgur.com/vKb2F1B.png)](https://youtu.be/UdRa-q5qbfo)
+The following three videos are samples of the results obtained by the code. Click on the images to watch the video on YouTube.
 
+[<p align="center"> <img src="https://img.youtube.com/vi/UdRa-q5qbfo/0.jpg" width="50%" title="GMM sample video 1, click to watch" > </p>](https://youtu.be/UdRa-q5qbfo)
 
+<p align="center">
+    <em>Gaussian Mixture Models (GMM) Output Sample 1</em>
+</p>
 
-https://user-images.githubusercontent.com/35075754/156913439-dde141c5-6c9d-45fd-9b49-feac3c0bdf4a.mp4
+[<p align="center"> <img src="https://img.youtube.com/vi/iyzrvn_z9PE/0.jpg" width="50%" title="GMM sample video 2, click to watch"> </p>](https://youtu.be/iyzrvn_z9PE)
+ 
+ <p align="center">
+    <em>Gaussian Mixture Models (GMM) Output Sample 2</em>
+</p>
 
+[<p align="center"> <img src="https://img.youtube.com/vi/jKeRerl0PuQ/0.jpg" width="50%" title="GMM sample video 3, click to watch"> </p>](https://youtu.be/jKeRerl0PuQ)
+
+<p align="center">
+    <em>Gaussian Mixture Models (GMM) Output Sample 3</em>
+</p>
 
 
 The following block diagram illustrates the followed approach:
