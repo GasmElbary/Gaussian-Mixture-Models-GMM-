@@ -1,5 +1,7 @@
 # Gaussian Mixture Models (GMM)
 
+This is an implementation of Gaussian Mixture Models (GMM) on Matlab.
+
 This implementation is based on Stuffer's and Grisomn's paper in [1]. They have introduced a new method for realtime segmentation that is robust and flexible to noise and perform better in modelling dynamic backgrounds. Common methods for real-time segmentation like "background subtraction" are vulnerable to changes in the background. For example, if there were some clouds on the sky or it is windy or raining, the standard methods have no chance to update their model or overcome this issue, thus giving wrong results. However, Stuffer’s and Grisomn’s approach is capable to cope such issues.
 
 Simply their approach is to model the values of each pixel as a mixture of Gaussian distributions; then based on the variance and supporting statistics of the models we decide either a pixel is background or foreground. These characteristics allow the approach to have more than one possible pixel intensity that corresponds to the background. Furthermore, at each frame, Gaussians of mixtures at a pixel are either reinforced, punished or replaced, giving the background an advantage to improve and reduce error measurements. 
